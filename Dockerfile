@@ -7,7 +7,7 @@ ARG CONTAINER_PACKAGE_URL="mirrors.aliyun.com"
 
 
 RUN if [ $CONTAINER_PACKAGE_URL ] ; then sed -i "s/dl-cdn.alpinelinux.org/${CONTAINER_PACKAGE_URL}/g" /etc/apk/repositories ; fi
-
+RUN apk add  --no-cache openssh-client
 
 COPY extensions /tmp/extensions
 WORKDIR /tmp/extensions
