@@ -1,6 +1,6 @@
-ARG PHP_VERSION="php:7.2-fpm-alpine3.12"
+ARG PHP_VERSION="php:7.2-fpm-alpine"
 FROM ${PHP_VERSION}
-
+MAINTAINER carlo 28447402@qq.com
 ARG TZ="Asia/Shanghai"
 ARG PHP_EXTENSIONS="pdo_mysql,mysqli,mbstring,gd,curl,opcache,mongodb,pcntl,redis,mcrypt,bz2,zip,bcmath,swoole"
 ARG CONTAINER_PACKAGE_URL="mirrors.aliyun.com"
