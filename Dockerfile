@@ -1,4 +1,4 @@
-ARG PHP_VERSION="php:8-fpm-alpine"
+ARG PHP_VERSION="php:8.1-fpm-alpine"
 FROM ${PHP_VERSION}
 MAINTAINER carlo 28447402@qq.com
 ARG TZ="Asia/Shanghai"
