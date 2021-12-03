@@ -32,10 +32,17 @@ RUN apk add --no-cache postgresql-dev >/dev/null
 RUN apk add --no-cache recode-dev >/dev/null
 RUN apk add --no-cache libxml2-dev >/dev/null
 RUN apk add --no-cache libxslt-dev >/dev/null
-#安装 编译依赖
-RUN apk add --no-cache autoconf gcc g++ make php7-dev > /dev/null
+RUN apk add --no-cache gcc >/dev/null
+RUN apk add --no-cache g++ >/dev/null
+RUN apk add --no-cache autoconf >/dev/null
+RUN apk add --no-cache make >/dev/null
+#RUN apk add --no-cache php7-dev
+##安装 扩展
+RUN pecl install mongodb-1.6.1 >/dev/null && docker-php-ext-enable mongodb
+RUN pecl install redis-3.1.6 >/dev/null && docker-php-ext-enable redis
+RUN pecl install swoole-4.3.6 >/dev/null && docker-php-ext-enable swoole
+RUN pecl install apcu-5.1.7 >/dev/null && docker-php-ext-enable apcu
 
-#安装 扩展
 RUN docker-php-ext-install exif >/dev/null
 RUN docker-php-ext-install mbstring >/dev/null
 RUN docker-php-ext-install mysqli >/dev/null
@@ -63,13 +70,6 @@ RUN docker-php-ext-install tidy >/dev/null
 RUN docker-php-ext-install xmlrpc >/dev/null
 RUN docker-php-ext-install xsl >/dev/null
 RUN docker-php-ext-install zip >/dev/null
-
-#安装 pecl扩展
-RUN pecl install redis-3.1.6 >/dev/null && docker-php-ext-enable redis
-RUN pecl install mongodb-1.6.1 >/dev/null && docker-php-ext-enable mongodb
-RUN pecl install swoole-4.3.6  && docker-php-ext-enable swoole
-
-RUN pecl install apcu-5.1.7 >/dev/null && docker-php-ext-enable apcu
 
 #设置进入容器后的初始目录
 WORKDIR /www
